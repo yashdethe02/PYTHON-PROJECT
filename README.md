@@ -11,11 +11,19 @@ This is a simple Rock Paper Scissors game with a modern web interface built usin
     pip install flask
     ```
 
-2. Download or place the pre-trained model file `model.h5` in the project directory.
-
-3. Run the Flask application:
+2. Run the Flask application:
     ```bash
     python app.py
     ```
 
-4. Open your web browser and go to `http://127.0.0.1:5000` to play the game.
+3. Open your web browser and go to `http://127.0.0.1:5000` to play the game.
+
+### Hand Gesture Recognition
+
+This project uses TensorFlow.js for hand gesture recognition. The necessary scripts are included in the HTML file.
+
+### Setting Up Webcam and Handpose Model
+
+1. Ensure your device has a webcam.
+2. The webcam will be accessed automatically when you open the game in your browser.
+3. The handpose model will be loaded automatically when the page loads.

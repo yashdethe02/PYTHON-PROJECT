@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <div class="container">
+{% extends "base.html" %}
+
+{% block body %}
+<div class="container">
+    <div class="game-interface">
         <h1>Rock Paper Scissors</h1>
         <div class="choices">
             <button onclick="play('rock')">Rock</button>
@@ -19,10 +14,10 @@
             <p>Computer: <span id="computer-score">0</span></p>
         </div>
         <button onclick="resetGame()">Reset</button>
-        <div class="result">
-            <p id="result-text"></p>
-        </div>
+        <div class="result" id="result-text"></div>
     </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-</html>
+    <div id="loading">Loading webcam...</div>
+    <video id="webcam" autoplay playsinline width="640" height="480" style="display:none;"></video>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
