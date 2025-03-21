@@ -138,12 +138,31 @@ function play(choice) {
             const resultText = document.getElementById('result-text');
             resultText.innerText = `You chose ${data.user_choice}, computer chose ${data.computer_choice}. You ${data.result}!`;
             resultText.className = `result ${data.result}`;
-            updateScore(data.result);
+            document.getElementById('user-score').innerText = data.user_score;
+            document.getElementById('computer-score').innerText = data.computer_score;
             enableButtons();
         }, 500);
     })
     .catch(() => {
         enableButtons();
+    });
+}
+
+function resetGame() {
+    fetch('/reset', {
+        method: 'POST'
+    })
+    .then(response => response.json())
+    .then(data => {
+        userScore = data.user_score;
+        computerScore = data.computer_score;
+        document.getElementById('user-score').innerText = userScore;
+        document.getElementById('computer-score').innerText = computerScore;
+        const resultText = document.getElementById('result-text');
+        resultText.innerText = '';
+        resultText.className = 'result';
+        enableButtons();
+        resultText.innerText = 'New game started! Make your choice.';
     });
 }
 
@@ -160,20 +179,6 @@ function disableButtons() {
 function enableButtons() {
     const buttons = document.querySelectorAll('.choices button');
     buttons.forEach(button => button.disabled = false);
-}
-
-function resetGame() {
-    userScore = 0;
-    computerScore = 0;
-    document.getElementById('user-score').innerText = userScore;
-    document.getElementById('computer-score').innerText = computerScore;
-    const resultText = document.getElementById('result-text');
-    resultText.innerText = '';
-    resultText.className = 'result';
-    enableButtons();
-    const buttons = document.querySelectorAll('.choices button');
-    buttons.forEach(button => button.disabled = false);
-    resultText.innerText = 'New game started! Make your choice.';
 }
 
 window.onload = async () => {
